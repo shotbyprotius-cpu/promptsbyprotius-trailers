@@ -59,7 +59,7 @@ h2{text-align:center;font-size:clamp(24px,3.4vw,42px);letter-spacing:.12em;text-
 footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}footer a.sbp-foot{letter-spacing:.08em;text-shadow:0 0 10px rgba(245,166,35,.45)}footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px solid #122}
 @media (max-width:640px){nav{padding:10px 4vw}nav .links a{margin-left:10px;font-size:12px;padding:8px 2px;display:inline-block}h1{font-size:clamp(20px,7.4vw,40px);letter-spacing:.05em}#hero .in{padding:0 5vw}.tag{margin:12px 0 28px}.cta{flex-direction:column;align-items:center;gap:14px}.btn{font-size:15px;padding:14px 26px;min-height:48px;width:100%;max-width:320px;text-align:center}.frame{aspect-ratio:auto;height:min(78vh,620px);border-radius:12px}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px 18px}.card:hover{transform:none}section{padding:64px 5vw}.book{letter-spacing:.12em}.contact-form{padding:22px 16px;gap:14px;max-width:100%}.contact-form .btn{max-width:none}}
 @media (prefers-reduced-motion:reduce){#hero .glow{animation:none}#hero video{display:none}}
-</style></head><body>
+.m-only{display:none}@media (max-width:640px){.d-only{display:none}.m-only{display:inline}}</style></head><body>
 <nav><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
 
 <header id="hero">
@@ -75,7 +75,7 @@ footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}foo
 
 <section id="showcase">
  <h2>The Trailers</h2>
- <p class="sub">Press Enter for the music, spin the ring, and click the front card to play a trailer or open it on X.</p>
+ <p class="sub"><span class="d-only">Press Enter for the music, spin the ring, and click the front card to play a trailer or open it on X.</span><span class="m-only">Tap for the music, swipe the ring, and tap the front card to play a trailer or open it on X.</span></p>
  <div class="frame"><iframe src="carousel/index.html" title="3D book trailer carousel" allow="autoplay; fullscreen" loading="lazy" allowfullscreen></iframe></div>
  <p class="alt"><a href="carousel/index.html" target="_blank" rel="noopener">Open the carousel full screen ↗</a></p>
 </section>
