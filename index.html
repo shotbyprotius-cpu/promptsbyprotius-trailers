@@ -34,6 +34,9 @@ h2{text-align:center;font-size:clamp(24px,3.4vw,42px);letter-spacing:.12em;text-
 #showcase{background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%)}
 .frame{max-width:1280px;margin:0 auto;aspect-ratio:16/9;border:1px solid rgba(25,195,195,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(25,195,195,.25)}
 .frame iframe{width:100%;height:100%;border:0;display:block}
+.pframe{max-width:1280px;margin:0 auto;aspect-ratio:16/9;border:1px solid rgba(25,195,195,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(25,195,195,.25);background:#000}
+.pframe video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+@media (max-width:640px){.pframe{border-radius:12px}}
 .alt{text-align:center;margin-top:16px;font-size:14px;color:#8aa}
 .alt a{color:var(--teal)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;max-width:1200px;margin:0 auto}
@@ -72,6 +75,12 @@ footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}foo
   <div class="cta"><a class="btn" href="#showcase">Watch the trailers</a><a class="btn amber" href="#contact">Get a trailer</a></div>
  </div>
 </header>
+
+<section id="promo">
+ <h2>The Promo</h2>
+ <p class="sub">Tap play to watch, sound on.</p>
+ <div class="pframe"><video src="media/promo.mp4" poster="media/promo_poster.jpg" controls playsinline preload="metadata"></video></div>
+</section>
 
 <section id="showcase">
  <h2>The Trailers</h2>
