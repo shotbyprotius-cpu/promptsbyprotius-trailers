@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PROMPTSBYPROTIUS — Cinematic AI Book Trailers</title>
+<meta name="description" content="Cinematic AI book trailers for authors by PROMPTSBYPROTIUS.">
+<style>
+:root{--teal:#19C3C3;--amber:#F5A623}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#05070a;color:#eee;font-family:system-ui,sans-serif;line-height:1.55}
+a{color:inherit}
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 4vw;background:rgba(5,7,10,.7);backdrop-filter:blur(8px);border-bottom:1px solid #123}
+nav .logo{letter-spacing:.14em;color:var(--amber);text-shadow:0 0 14px rgba(245,166,35,.45);font-weight:600;text-decoration:none}
+nav .links a{margin-left:22px;text-decoration:none;color:#9bb;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+nav .links a:hover{color:var(--teal)}
+.btn{display:inline-block;font-size:17px;padding:14px 34px;border-radius:40px;border:2px solid var(--teal);background:transparent;color:#fff;cursor:pointer;box-shadow:0 0 30px rgba(25,195,195,.45);letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:.2s}
+.btn:hover{background:rgba(25,195,195,.12);box-shadow:0 0 44px rgba(25,195,195,.7)}
+.btn.amber{border-color:var(--amber);box-shadow:0 0 30px rgba(245,166,35,.4)}
+.btn.amber:hover{background:rgba(245,166,35,.12)}
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%)}
+#hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;filter:saturate(1.2)}
+#fx{position:absolute;inset:0;width:100%;height:100%}
+#hero .glow{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(80px);opacity:.25;animation:drift 18s ease-in-out infinite alternate}
+#hero .g1{background:var(--teal);left:-20vmax;top:-20vmax}
+#hero .g2{background:var(--amber);right:-25vmax;bottom:-25vmax;animation-delay:-9s;opacity:.18}
+@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.1)}}
+#hero .in{position:relative;z-index:2;padding:0 6vw}
+h1{margin:0;font-size:clamp(34px,7vw,92px);letter-spacing:.12em;font-weight:700;color:#fff;text-shadow:0 0 30px rgba(25,195,195,.55)}
+h1 span{color:var(--amber);text-shadow:0 0 30px rgba(245,166,35,.55)}
+.tag{font-size:clamp(16px,2.2vw,26px);color:#bcd;letter-spacing:.06em;margin:14px 0 38px}
+.cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+section{padding:90px 5vw}
+h2{text-align:center;font-size:clamp(24px,3.4vw,42px);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-shadow:0 0 18px rgba(245,166,35,.5);margin:0 0 10px}
+.sub{text-align:center;color:#8aa;margin:0 auto 36px;max-width:640px}
+#showcase{background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%)}
+.frame{max-width:1280px;margin:0 auto;aspect-ratio:16/9;border:1px solid rgba(25,195,195,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(25,195,195,.25)}
+.frame iframe{width:100%;height:100%;border:0;display:block}
+.alt{text-align:center;margin-top:16px;font-size:14px;color:#8aa}
+.alt a{color:var(--teal)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;max-width:1200px;margin:0 auto}
+.card{border:1px solid #1d3a40;border-radius:16px;padding:28px 24px;background:linear-gradient(160deg,rgba(25,195,195,.07),rgba(5,7,10,.6));transition:.25s}
+.card:hover{border-color:var(--teal);box-shadow:0 0 34px rgba(25,195,195,.3);transform:translateY(-4px)}
+.card .k{font-size:13px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
+.card h3{margin:8px 0 10px;font-size:21px;color:#fff}
+.card p{margin:0;color:#9ab;font-size:15px}
+#contact{text-align:center;background:radial-gradient(ellipse at 50% 100%,#1a1408 0%,#05070a 65%)}
+.book{font-size:clamp(40px,8vw,96px);font-weight:700;letter-spacing:.2em;color:var(--amber);text-shadow:0 0 40px rgba(245,166,35,.6);margin:10px 0 26px}
+footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px solid #122}
+@media (max-width:640px){nav .links a{margin-left:12px;font-size:12px}.frame{aspect-ratio:3/4}section{padding:70px 4vw}}
+@media (prefers-reduced-motion:reduce){#hero .glow{animation:none}#hero video{display:none}}
+</style></head><body>
+<nav><a class="logo" href="#hero">SBP</a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
+
+<header id="hero">
+ <video src="carousel/media/SBP.mp4" poster="carousel/posters/SBP.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+ <div class="glow g1"></div><div class="glow g2"></div>
+ <canvas id="fx" aria-hidden="true"></canvas>
+ <div class="in">
+  <h1>PROMPTS<span>BY</span>PROTIUS</h1>
+  <p class="tag">Cinematic AI book trailers for authors</p>
+  <div class="cta"><a class="btn" href="#showcase">Watch the trailers</a><a class="btn amber" href="#contact">Get a trailer</a></div>
+ </div>
+</header>
+
+<section id="showcase">
+ <h2>The Trailers</h2>
+ <p class="sub">Press Enter for the music, spin the ring, and click the front card to play a trailer or open it on X.</p>
+ <div class="frame"><iframe src="carousel/index.html" title="3D book trailer carousel" allow="autoplay; fullscreen" loading="lazy" allowfullscreen></iframe></div>
+ <p class="alt"><a href="carousel/index.html" target="_blank" rel="noopener">Open the carousel full screen ↗</a></p>
+</section>
+
+<section id="services">
+ <h2>Services</h2>
+ <p class="sub">Every piece is built around your book.</p>
+ <div class="grid">
+  <div class="card"><div class="k">16:9</div><h3>Cinematic book trailers</h3><p>Widescreen trailers that bring your story's world, characters and tone to the screen.</p></div>
+  <div class="card"><div class="k">9:16</div><h3>Vertical social cuts</h3><p>Phone-first versions for X, Reels, TikTok and Shorts.</p></div>
+  <div class="card"><div class="k">Sound</div><h3>Custom score &amp; voiceover</h3><p>Original music and narration made to fit your trailer's mood.</p></div>
+  <div class="card"><div class="k">3D</div><h3>3D title &amp; logo motion</h3><p>Animated titles, logos and motion graphics, like the carousel above.</p></div>
+ </div>
+</section>
+
+<section id="contact">
+ <h2>Get a trailer</h2>
+ <p class="sub">DM @theProtius on X with the word</p>
+ <div class="book">BOOK</div>
+ <a class="btn amber" href="https://x.com/theProtius" target="_blank" rel="noopener">Message @theProtius on X ↗</a>
+</section>
+<footer>© PROMPTSBYPROTIUS · <a href="https://x.com/theProtius" target="_blank" rel="noopener">@theProtius</a></footer>
+
+<script>if(/[?&]shot/.test(location.search))document.getElementById("hero").style.minHeight="900px";
+(()=>{const c=document.getElementById('fx'),x=c.getContext('2d');let w,h,p=[];const dpr=Math.min(devicePixelRatio||1,2);
+function rs(){w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);const n=Math.min(90,Math.floor(w*h/16000));p=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,v:Math.random()*.3+.08,a:Math.random()<.3}))}
+rs();addEventListener('resize',rs);
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
+(function f(){requestAnimationFrame(f);if(!vis)return;x.clearRect(0,0,w,h);for(const q of p){q.y-=q.v;if(q.y<-5){q.y=h+5;q.x=Math.random()*w}x.beginPath();x.arc(q.x,q.y,q.r,0,7);x.fillStyle=q.a?'rgba(245,166,35,.7)':'rgba(25,195,195,.7)';x.shadowBlur=8;x.shadowColor=x.fillStyle;x.fill()}})();})();
+</script>
+</body></html>

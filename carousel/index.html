@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PROMPTSBYPROTIUS — Book Trailers</title>
+<style>
+:root{--teal:#19C3C3;--amber:#F5A623}
+html,body{margin:0;height:100%;background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%);color:#eee;font-family:system-ui,sans-serif;overflow:hidden}
+canvas{display:block;touch-action:none}
+#title{position:fixed;left:0;right:0;bottom:6vh;text-align:center;font-size:clamp(18px,2.6vw,34px);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-shadow:0 0 18px rgba(245,166,35,.5);pointer-events:none}
+#hint{position:fixed;left:0;right:0;bottom:2.5vh;text-align:center;font-size:13px;color:#8aa;pointer-events:none}
+.ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:5}
+#start button{font-size:22px;padding:18px 42px;border-radius:40px;border:2px solid var(--teal);background:transparent;color:#fff;cursor:pointer;box-shadow:0 0 30px rgba(25,195,195,.5);letter-spacing:.1em}
+#lb{display:none;flex-direction:column;gap:14px}
+#lb video{max-width:90vw;max-height:76vh;border:2px solid var(--amber);box-shadow:0 0 40px rgba(25,195,195,.6);background:#000}
+#lb .bar{display:flex;gap:16px;align-items:center}
+#lb a,#lb button{color:#fff;background:transparent;border:1px solid var(--teal);border-radius:20px;padding:8px 18px;font-size:15px;cursor:pointer;text-decoration:none}
+#mute{position:fixed;top:14px;right:14px;z-index:4;background:transparent;color:#ccc;border:1px solid #345;border-radius:16px;padding:6px 12px;cursor:pointer}
+</style></head><body>
+<div id="title"></div><div id="hint">Click a card · ← → keys · drag / swipe · click the front card to play</div>
+<button id="mute">♪ on</button>
+<div id="start" class="ov"><button>▶ ENTER</button></div>
+<div id="lb" class="ov"><video id="vid" controls playsinline></video><div class="bar"><a id="xlink" target="_blank" rel="noopener">Open on X ↗</a><button id="close">Close ✕</button></div></div>
+<audio id="music" src="music.mp3" loop preload="auto"></audio>
+<script type="module">
+import * as THREE from './three.module.min.js';
+const CARDS=[
+ ['SBP','PROMPTSBYPROTIUS','media/SBP.mp4','https://x.com/theProtius'],
+ ['LoveNode','Love Node','media/LoveNode.mp4','https://x.com/theProtius/status/2105002836505620713'],
+ ['LoveAtFirstFlight','Love at First Flight','media/LoveAtFirstFlight.mp4','https://x.com/theProtius/status/2105002273034391891'],
+ ['AlgernonsSeed',"Algernon's Seed",'media/AlgernonsSeed.mp4','https://x.com/theProtius/status/2105001877008191884'],
+ ['TheFirmamentFiles','The Firmament Files','media/TheFirmamentFiles.mp4','https://x.com/theProtius/status/2105001324110827576'],
+ ['The666thStreetStation','The 666th Street Station','media/The666thStreetStation.mp4','https://x.com/theProtius/status/2011234401682870392'],
+ ['QuartzLord','Quartz Lord','media/QuartzLord.mp4','https://x.com/theProtius/status/2013701151678447724'],
+ ['Teledram','Teledram','media/Teledram.mp4','https://x.com/theProtius/status/1996985391296225631'],
+];
+const N=CARDS.length,STEP=Math.PI*2/N,R=5,W=3.6,H=2.025;
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);document.body.prepend(renderer.domElement);
+const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x05070a,8,18);
+const cam=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,100);cam.position.set(0,2.2,12.5);cam.lookAt(0,0,0);
+const ring=new THREE.Group();scene.add(ring);
+const loader=new THREE.TextureLoader();const meshes=[];
+const glowTex=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const g=c.getContext('2d');const gr=g.createRadialGradient(64,64,10,64,64,64);gr.addColorStop(0,'rgba(25,195,195,.9)');gr.addColorStop(1,'rgba(25,195,195,0)');g.fillStyle=gr;g.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)})();
+CARDS.forEach((c,i)=>{
+ const tex=loader.load('posters/'+c[0]+'.jpg');tex.colorSpace=THREE.SRGBColorSpace;
+ const card=new THREE.Group();
+ const glow=new THREE.Mesh(new THREE.PlaneGeometry(W*1.45,H*1.7),new THREE.MeshBasicMaterial({map:glowTex,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));glow.position.z=-.02;
+ const edge=new THREE.Mesh(new THREE.PlaneGeometry(W+.1,H+.1),new THREE.MeshBasicMaterial({color:0xF5A623,transparent:true,opacity:0}));edge.position.z=-.01;
+ const img=new THREE.Mesh(new THREE.PlaneGeometry(W,H),new THREE.MeshBasicMaterial({map:tex,side:THREE.DoubleSide}));img.userData.i=i;
+ card.add(glow,edge,img);const a=i*STEP;card.position.set(Math.sin(a)*R,0,Math.cos(a)*R);card.rotation.y=a;
+ ring.add(card);meshes.push(img);card.userData={glow,edge,i};
+});
+let target=0,angle=0,front=0,idle=0,drag=null,moved=0;
+const titleEl=document.getElementById('title');
+function go(i){target=i;idle=0}
+function frontIdx(){return((Math.round(target)%N)+N)%N}
+const ray=new THREE.Raycaster(),ptr=new THREE.Vector2();
+const cv=renderer.domElement;
+cv.addEventListener('pointerdown',e=>{drag={x:e.clientX,t:target};moved=0;cv.setPointerCapture(e.pointerId)});
+cv.addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-drag.x;moved=Math.max(moved,Math.abs(dx));target=drag.t-dx/220;idle=0});
+cv.addEventListener('pointerup',e=>{const d=drag;drag=null;if(moved>6){target=Math.round(target);return}
+ ptr.set(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1);ray.setFromCamera(ptr,cam);const h=ray.intersectObjects(meshes)[0];
+ if(!h)return;const i=h.object.userData.i;if(i===frontIdx())openLB(i);else{let d=((i-frontIdx())%N+N)%N;if(d>N/2)d-=N;go(Math.round(target)+d)}});
+addEventListener('keydown',e=>{if(lb.style.display==='flex'){if(e.key==='Escape')closeLB();return}
+ if(e.key==='ArrowRight')go(Math.round(target)+1);if(e.key==='ArrowLeft')go(Math.round(target)-1);if(e.key==='Enter')openLB(frontIdx())});
+const lb=document.getElementById('lb'),vid=document.getElementById('vid'),music=document.getElementById('music');
+function openLB(i){const c=CARDS[i];vid.src=c[2];document.getElementById('xlink').href=c[3];lb.style.display='flex';music.volume=.08;vid.play().catch(()=>{})}
+function closeLB(){vid.pause();vid.removeAttribute('src');vid.load();lb.style.display='none';music.volume=.5;idle=0}
+document.getElementById('close').onclick=closeLB;lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
+document.querySelector('#start button').onclick=()=>{document.getElementById('start').remove();music.volume=.5;music.play().catch(()=>{})};
+const mute=document.getElementById('mute');mute.onclick=()=>{music.muted=!music.muted;mute.textContent=music.muted?'♪ off':'♪ on'};
+addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+const clock=new THREE.Clock();
+function tick(){const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
+ if(!drag&&lb.style.display!=='flex'&&document.getElementById('start')==null){idle+=dt;if(idle>6){go(Math.round(target)+1);idle=0}}
+ angle+=(target-angle)*Math.min(1,dt*5);ring.rotation.y=-angle*STEP;
+ cam.position.x=Math.sin(t*.15)*.8;cam.lookAt(0,0,0);
+ const f=frontIdx();if(f!==front||!titleEl.textContent){front=f;titleEl.textContent=CARDS[f][1]}
+ ring.children.forEach(c=>{const on=c.userData.i===f&&Math.abs(target-angle)<.3;const k=on?1:0;
+  c.userData.glow.material.opacity+=(k*(.75+.15*Math.sin(t*3))-c.userData.glow.material.opacity)*.12;
+  c.userData.edge.material.opacity+=(k-c.userData.edge.material.opacity)*.12;
+  const s=1+.15*c.userData.edge.material.opacity;c.scale.set(s,s,s)});
+ renderer.render(scene,cam);requestAnimationFrame(tick)}
+tick();
+</script></body></html>
