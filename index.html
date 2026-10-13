@@ -44,8 +44,20 @@ h2{text-align:center;font-size:clamp(24px,3.4vw,42px);letter-spacing:.12em;text-
 .card p{margin:0;color:#9ab;font-size:15px}
 #contact{text-align:center;background:radial-gradient(ellipse at 50% 100%,#1a1408 0%,#05070a 65%)}
 .book{font-size:clamp(40px,8vw,96px);font-weight:700;letter-spacing:.2em;color:var(--amber);text-shadow:0 0 40px rgba(245,166,35,.6);margin:10px 0 26px}
+.contact-email{display:inline-block;margin:0 0 28px;color:var(--teal);text-decoration:none;font-size:clamp(15px,2vw,18px);letter-spacing:.06em;text-shadow:0 0 14px rgba(25,195,195,.45);word-break:break-word}
+.contact-email:hover{color:#fff;text-shadow:0 0 22px rgba(25,195,195,.7)}
+.contact-or{color:#8aa;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:36px 0 18px}
+.contact-form{max-width:520px;margin:0 auto;text-align:left;display:grid;gap:16px;padding:28px 24px;border:1px solid rgba(245,166,35,.35);border-radius:16px;background:linear-gradient(160deg,rgba(245,166,35,.07),rgba(5,7,10,.7));box-shadow:0 0 40px rgba(245,166,35,.12)}
+.contact-form label{display:grid;gap:8px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid #1d3a40;background:#0a1014;color:#eee;font:inherit;font-size:16px;letter-spacing:normal;text-transform:none;outline:none;transition:.2s;appearance:none;-webkit-appearance:none}
+.contact-form select{background-image:linear-gradient(45deg,transparent 50%,var(--amber) 50%),linear-gradient(135deg,var(--amber) 50%,transparent 50%);background-position:calc(100% - 18px) calc(50% - 3px),calc(100% - 12px) calc(50% - 3px);background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:36px}
+.contact-form textarea{min-height:120px;resize:vertical;line-height:1.45}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--teal);box-shadow:0 0 18px rgba(25,195,195,.35)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#567}
+.contact-form .btn{width:100%;min-height:48px;margin-top:4px;text-align:center;font:inherit}
+.contact-form .err{color:#f88;font-size:13px;letter-spacing:.04em;text-transform:none;min-height:1.2em}
 footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px solid #122}
-@media (max-width:640px){nav{padding:10px 4vw}nav .links a{margin-left:10px;font-size:12px;padding:8px 2px;display:inline-block}h1{font-size:clamp(20px,7.4vw,40px);letter-spacing:.05em}#hero .in{padding:0 5vw}.tag{margin:12px 0 28px}.cta{flex-direction:column;align-items:center;gap:14px}.btn{font-size:15px;padding:14px 26px;min-height:48px;width:100%;max-width:320px;text-align:center}.frame{aspect-ratio:auto;height:min(78vh,620px);border-radius:12px}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px 18px}.card:hover{transform:none}section{padding:64px 5vw}.book{letter-spacing:.12em}}
+@media (max-width:640px){nav{padding:10px 4vw}nav .links a{margin-left:10px;font-size:12px;padding:8px 2px;display:inline-block}h1{font-size:clamp(20px,7.4vw,40px);letter-spacing:.05em}#hero .in{padding:0 5vw}.tag{margin:12px 0 28px}.cta{flex-direction:column;align-items:center;gap:14px}.btn{font-size:15px;padding:14px 26px;min-height:48px;width:100%;max-width:320px;text-align:center}.frame{aspect-ratio:auto;height:min(78vh,620px);border-radius:12px}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px 18px}.card:hover{transform:none}section{padding:64px 5vw}.book{letter-spacing:.12em}.contact-form{padding:22px 16px;gap:14px;max-width:100%}.contact-form .btn{max-width:none}}
 @media (prefers-reduced-motion:reduce){#hero .glow{animation:none}#hero video{display:none}}
 </style></head><body>
 <nav><a class="logo" href="https://byprotius.com">SBP</a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
@@ -84,6 +96,30 @@ footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px s
  <p class="sub">DM @theProtius on X with the word</p>
  <div class="book">BOOK</div>
  <a class="btn amber" href="https://x.com/theProtius" target="_blank" rel="noopener">Message @theProtius on X ↗</a>
+ <p class="contact-or">or email</p>
+ <a class="contact-email" href="mailto:shotbyprotius@gmail.com">shotbyprotius@gmail.com</a>
+ <form class="contact-form" id="contact-form" novalidate>
+  <label>Name
+   <input type="text" name="name" id="cf-name" required autocomplete="name" placeholder="Your name">
+  </label>
+  <label>Email
+   <input type="email" name="email" id="cf-email" required autocomplete="email" placeholder="you@example.com">
+  </label>
+  <label>Project type
+   <select name="project" id="cf-project" required>
+    <option value="" disabled selected>Select a project type</option>
+    <option value="Book trailer">Book trailer</option>
+    <option value="Logo / title animation">Logo / title animation</option>
+    <option value="Social cutdown (9:16)">Social cutdown (9:16)</option>
+    <option value="Other">Other</option>
+   </select>
+  </label>
+  <label>Message
+   <textarea name="message" id="cf-message" required maxlength="1200" placeholder="A short note about your book or project"></textarea>
+  </label>
+  <p class="err" id="cf-err" aria-live="polite"></p>
+  <button type="submit" class="btn amber">Send</button>
+ </form>
 </section>
 <footer>© PROMPTSBYPROTIUS · <a href="https://x.com/theProtius" target="_blank" rel="noopener">@theProtius</a></footer>
 
@@ -94,5 +130,17 @@ rs();addEventListener('resize',rs);
 if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
 let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
 (function f(){requestAnimationFrame(f);if(!vis)return;x.clearRect(0,0,w,h);for(const q of p){q.y-=q.v;if(q.y<-5){q.y=h+5;q.x=Math.random()*w}x.beginPath();x.arc(q.x,q.y,q.r,0,7);x.fillStyle=q.a?'rgba(245,166,35,.7)':'rgba(25,195,195,.7)';x.shadowBlur=8;x.shadowColor=x.fillStyle;x.fill()}})();})();
+(()=>{const form=document.getElementById('contact-form');if(!form)return;const err=document.getElementById('cf-err');
+form.addEventListener('submit',e=>{e.preventDefault();err.textContent='';
+const name=(document.getElementById('cf-name').value||'').trim();
+const email=(document.getElementById('cf-email').value||'').trim();
+const project=(document.getElementById('cf-project').value||'').trim();
+const message=(document.getElementById('cf-message').value||'').trim();
+if(!name||!email||!project||!message){err.textContent='Please fill in every field.';return}
+if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){err.textContent='Please enter a valid email.';return}
+const subject='Book trailer inquiry — '+name;
+const body=['Name: '+name,'Email: '+email,'Project type: '+project,'','Message:',message].join('\n');
+location.href='mailto:shotbyprotius@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+});})();
 </script>
 </body></html>

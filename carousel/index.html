@@ -5,9 +5,17 @@
 :root{--teal:#19C3C3;--amber:#F5A623}
 html,body{margin:0;height:100%;background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%);color:#eee;font-family:system-ui,sans-serif;overflow:hidden}
 canvas{display:block;touch-action:none}
-#title{position:fixed;left:0;right:0;bottom:6vh;text-align:center;font-size:clamp(18px,2.6vw,34px);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-shadow:0 0 18px rgba(245,166,35,.5);pointer-events:none}
-@media (max-width:640px){#hint{font-size:11px;padding:0 10px}#start button{font-size:18px;padding:16px 34px}#lb a,#lb button{padding:12px 20px}}
-#hint{position:fixed;left:0;right:0;bottom:2.5vh;text-align:center;font-size:13px;color:#8aa;pointer-events:none}
+#title{position:fixed;left:0;right:0;bottom:6vh;text-align:center;font-size:clamp(18px,2.6vw,34px);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-shadow:0 0 18px rgba(245,166,35,.5);pointer-events:none;padding:0 4vw;line-height:1.25}
+#hint{position:fixed;left:0;right:0;bottom:2.5vh;text-align:center;font-size:13px;color:#8aa;pointer-events:none;padding:0 4vw;line-height:1.35}
+#hint .h-m{display:none}
+@media (max-width:640px){
+#title{bottom:16vh;font-size:clamp(13px,3.8vw,18px);letter-spacing:.08em;padding:0 12px 8px}
+#hint{bottom:3.5vh;font-size:11px;padding:8px 14px 10px;max-width:100%}
+#hint .h-full{display:none}
+#hint .h-m{display:inline}
+#start button{font-size:18px;padding:16px 34px}
+#lb a,#lb button{padding:12px 20px}
+}
 .ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:5}
 #start button{font-size:22px;padding:18px 42px;border-radius:40px;border:2px solid var(--teal);background:transparent;color:#fff;cursor:pointer;box-shadow:0 0 30px rgba(25,195,195,.5);letter-spacing:.1em}
 #lb{display:none;flex-direction:column;gap:14px}
@@ -16,7 +24,7 @@ canvas{display:block;touch-action:none}
 #lb a,#lb button{color:#fff;background:transparent;border:1px solid var(--teal);border-radius:20px;padding:8px 18px;font-size:15px;cursor:pointer;text-decoration:none}
 #mute{position:fixed;top:14px;right:14px;z-index:4;background:transparent;color:#ccc;border:1px solid #345;border-radius:16px;padding:6px 12px;cursor:pointer}
 </style></head><body>
-<div id="title"></div><div id="hint">Click a card · ← → keys · drag / swipe · click the front card to play</div>
+<div id="title"></div><div id="hint"><span class="h-full">Click a card · ← → keys · drag / swipe · click the front card to play</span><span class="h-m">Swipe · tap front card to play</span></div>
 <button id="mute">♪ on</button>
 <div id="start" class="ov"><button>▶ ENTER</button></div>
 <div id="lb" class="ov"><video id="vid" controls playsinline></video><div class="bar"><a id="xlink" target="_blank" rel="noopener">Open on X ↗</a><button id="close">Close ✕</button></div></div>
