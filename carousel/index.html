@@ -6,6 +6,7 @@
 html,body{margin:0;height:100%;background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%);color:#eee;font-family:system-ui,sans-serif;overflow:hidden}
 canvas{display:block;touch-action:none}
 #title{position:fixed;left:0;right:0;bottom:6vh;text-align:center;font-size:clamp(18px,2.6vw,34px);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-shadow:0 0 18px rgba(245,166,35,.5);pointer-events:none}
+@media (max-width:640px){#hint{font-size:11px;padding:0 10px}#start button{font-size:18px;padding:16px 34px}#lb a,#lb button{padding:12px 20px}}
 #hint{position:fixed;left:0;right:0;bottom:2.5vh;text-align:center;font-size:13px;color:#8aa;pointer-events:none}
 .ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:5}
 #start button{font-size:22px;padding:18px 42px;border-radius:40px;border:2px solid var(--teal);background:transparent;color:#fff;cursor:pointer;box-shadow:0 0 30px rgba(25,195,195,.5);letter-spacing:.1em}
@@ -68,7 +69,8 @@ function closeLB(){vid.pause();vid.removeAttribute('src');vid.load();lb.style.di
 document.getElementById('close').onclick=closeLB;lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
 document.querySelector('#start button').onclick=()=>{document.getElementById('start').remove();music.volume=.5;music.play().catch(()=>{})};
 const mute=document.getElementById('mute');mute.onclick=()=>{music.muted=!music.muted;mute.textContent=music.muted?'♪ off':'♪ on'};
-addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
+function fit(){const a=innerWidth/innerHeight;cam.aspect=a;const t=Math.tan(THREE.MathUtils.degToRad(cam.fov/2));const d=Math.max(7.5,(W/0.82/2)/(t*a));cam.position.set(0,2.2*d/7.5,R+d);cam.lookAt(0,0,0);cam.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)}
+fit();addEventListener('resize',fit);
 const clock=new THREE.Clock();
 function tick(){const dt=Math.min(clock.getDelta(),.05),t=clock.elapsedTime;
  if(!drag&&lb.style.display!=='flex'&&document.getElementById('start')==null){idle+=dt;if(idle>6){go(Math.round(target)+1);idle=0}}
