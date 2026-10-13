@@ -8,7 +8,7 @@
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{margin:0;overflow-x:hidden;background:#05070a;color:#eee;font-family:system-ui,sans-serif;line-height:1.55}
 a{color:inherit}
-nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:14px 4vw;background:rgba(5,7,10,.7);backdrop-filter:blur(8px);border-bottom:1px solid #123}
+nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:flex-end;align-items:center;padding:14px 4vw;background:rgba(5,7,10,.7);backdrop-filter:blur(8px);border-bottom:1px solid #123}
 nav .logo{letter-spacing:.14em;color:var(--amber);text-shadow:0 0 14px rgba(245,166,35,.45);font-weight:600;text-decoration:none}
 nav .links a{margin-left:22px;text-decoration:none;color:#9bb;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
 nav .links a:hover{color:var(--teal)}
@@ -56,11 +56,11 @@ h2{text-align:center;font-size:clamp(24px,3.4vw,42px);letter-spacing:.12em;text-
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:#567}
 .contact-form .btn{width:100%;min-height:48px;margin-top:4px;text-align:center;font:inherit}
 .contact-form .err{color:#f88;font-size:13px;letter-spacing:.04em;text-transform:none;min-height:1.2em}
-footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}footer a.sbp-foot b{letter-spacing:.14em;margin-right:4px;text-shadow:0 0 10px rgba(245,166,35,.45)}footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px solid #122}
+footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}footer a.sbp-foot{letter-spacing:.08em;text-shadow:0 0 10px rgba(245,166,35,.45)}footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px solid #122}
 @media (max-width:640px){nav{padding:10px 4vw}nav .links a{margin-left:10px;font-size:12px;padding:8px 2px;display:inline-block}h1{font-size:clamp(20px,7.4vw,40px);letter-spacing:.05em}#hero .in{padding:0 5vw}.tag{margin:12px 0 28px}.cta{flex-direction:column;align-items:center;gap:14px}.btn{font-size:15px;padding:14px 26px;min-height:48px;width:100%;max-width:320px;text-align:center}.frame{aspect-ratio:auto;height:min(78vh,620px);border-radius:12px}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px 18px}.card:hover{transform:none}section{padding:64px 5vw}.book{letter-spacing:.12em}.contact-form{padding:22px 16px;gap:14px;max-width:100%}.contact-form .btn{max-width:none}}
 @media (prefers-reduced-motion:reduce){#hero .glow{animation:none}#hero video{display:none}}
 </style></head><body>
-<nav><a class="logo" href="https://byprotius.com">SBP</a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
+<nav><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
 
 <header id="hero">
  <video src="carousel/media/SBP.mp4" poster="carousel/posters/SBP.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
@@ -121,7 +121,7 @@ footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}foo
   <button type="submit" class="btn amber">Send</button>
  </form>
 </section>
-<footer>© PROMPTSBYPROTIUS · <a href="https://x.com/theProtius" target="_blank" rel="noopener">@theProtius</a> · <a class="sbp-foot" href="https://byprotius.com"><b>SBP</b> Shot by Protius</a></footer>
+<footer>© PROMPTSBYPROTIUS · <a href="https://x.com/theProtius" target="_blank" rel="noopener">@theProtius</a> · <a class="sbp-foot" href="https://byprotius.com">Shot by Protius</a></footer>
 
 <script>if(/[?&]shot/.test(location.search))document.getElementById("hero").style.minHeight="900px";
 (()=>{const c=document.getElementById('fx'),x=c.getContext('2d');let w,h,p=[];const dpr=Math.min(devicePixelRatio||1,2);
