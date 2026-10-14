@@ -50,9 +50,22 @@ h2{font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-.01em;margin:0
 .contact-form .err{color:var(--accent);font-size:14px;min-height:1.2em;margin:0}
 footer{max-width:1200px;margin:0 auto;padding:40px 6vw 60px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
 footer a{text-underline-offset:3px}
+
+.grid{gap:20px}
+.card{border-top:0;padding:30px 26px 34px;min-height:260px;color:#111}
+.card p{color:inherit;opacity:.85}
+.card .k{color:inherit;font-weight:700}
+.card:nth-child(1){background:#F2B705}
+.card:nth-child(2){background:#1F4E9C;color:#fff}
+.card:nth-child(3){background:#E85A3C}
+.card:nth-child(4){background:#7FB7A4}
+#contact{max-width:none;background:#F4D9C6;border-top:0}
+#contact .cols{max-width:1200px;margin:0 auto}
+#contact .contact-form{background:#fff}
+#contact .sub,#contact .contact-or{color:#4a4440}
 .m-only{display:none}
 @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:760px){body{font-size:16px}h1{font-size:clamp(26px,8.6vw,44px)}.grid{grid-template-columns:1fr}nav{padding:16px 5vw}nav .logo{display:none}nav{justify-content:flex-end}nav .links a{margin-left:18px}#hero{padding:72px 5vw 64px}section{padding:72px 5vw}.cta{flex-direction:column}.btn{text-align:center}#contact .cols{grid-template-columns:1fr;gap:44px}.contact-form{padding:24px 18px}.frame{aspect-ratio:auto;height:min(78vh,620px)}.grid{gap:40px}.d-only{display:none}.m-only{display:inline}}
+@media (max-width:760px){body{font-size:16px}h1{font-size:clamp(26px,8.6vw,44px)}.grid{grid-template-columns:1fr}nav{padding:16px 5vw}nav .logo{display:none}nav{justify-content:flex-end}nav .links a{margin-left:18px}#hero{padding:72px 5vw 64px}section{padding:72px 5vw}.cta{flex-direction:column}.btn{text-align:center}#contact .cols{grid-template-columns:1fr;gap:44px}.contact-form{padding:24px 18px}.card{min-height:0}.frame{aspect-ratio:auto;height:min(78vh,620px)}.grid{gap:40px}.d-only{display:none}.m-only{display:inline}}
 </style></head><body>
 <nav><a class="logo" href="#hero">PROMPTS<span>BY</span>PROTIUS</a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
 
