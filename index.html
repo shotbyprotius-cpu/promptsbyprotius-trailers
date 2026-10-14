@@ -63,13 +63,20 @@ footer a{text-underline-offset:3px}
 #contact .cols{max-width:1200px;margin:0 auto}
 #contact .contact-form{background:#fff}
 #contact .sub,#contact .contact-or{color:#4a4440}
+nav{align-items:center}nav .logo{display:flex;align-items:center;gap:12px}nav .logo img{height:36px;width:auto;display:block}
+.hero-logo{display:block;width:clamp(150px,18vw,240px);height:auto;margin:0 0 36px}
+section{padding-left:0;padding-right:0;width:88vw;max-width:1200px}
+#hero{width:88vw;padding-left:0;padding-right:0}
+#contact{width:auto;padding-left:6vw;padding-right:6vw}
+footer{width:88vw;padding-left:0;padding-right:0}
 .m-only{display:none}
 @media (max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:760px){body{font-size:16px}h1{font-size:clamp(26px,8.6vw,44px)}.grid{grid-template-columns:1fr}nav{padding:16px 5vw}nav .logo{display:none}nav{justify-content:flex-end}nav .links a{margin-left:18px}#hero{padding:72px 5vw 64px}section{padding:72px 5vw}.cta{flex-direction:column}.btn{text-align:center}#contact .cols{grid-template-columns:1fr;gap:44px}.contact-form{padding:24px 18px}.card{min-height:0}.frame{aspect-ratio:auto;height:min(78vh,620px)}.grid{gap:40px}.d-only{display:none}.m-only{display:inline}}
+@media (max-width:760px){body{font-size:16px}h1{font-size:clamp(26px,8.6vw,44px)}.grid{grid-template-columns:1fr}nav{padding:16px 5vw}nav .logo b{display:none}nav .logo img{height:32px}nav .links a{margin-left:18px}#hero{padding:56px 0 64px;width:90vw}section{padding:72px 0;width:90vw}#contact{padding-left:5vw;padding-right:5vw}footer{width:90vw}.cta{flex-direction:column}.btn{text-align:center}#contact .cols{grid-template-columns:1fr;gap:44px}.contact-form{padding:24px 18px}.card{min-height:0}.frame{aspect-ratio:auto;height:min(78vh,620px)}.grid{gap:40px}.d-only{display:none}.m-only{display:inline}}
 </style></head><body>
-<nav><a class="logo" href="#hero">PROMPTS<span>BY</span>PROTIUS</a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
+<nav><a class="logo" href="#hero" aria-label="PROMPTSBYPROTIUS home"><img src="media/logo_nav.webp" alt="" width="40" height="36"><b>PROMPTS<span>BY</span>PROTIUS</b></a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
 
 <header id="hero">
+ <img class="hero-logo" src="media/logo.webp" alt="PROMPTSBYPROTIUS logo" width="704" height="640">
  <h1>PROMPTS<span>BY</span>PROTIUS</h1>
  <p class="tag">Cinematic AI book trailers for authors</p>
  <div class="cta"><a class="btn" href="#showcase">Watch the trailers</a><a class="btn ghost" href="#contact">Get a trailer</a></div>
