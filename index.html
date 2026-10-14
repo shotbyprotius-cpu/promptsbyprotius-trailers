@@ -3,77 +3,62 @@
 <title>PROMPTSBYPROTIUS — Cinematic AI Book Trailers</title>
 <meta name="description" content="Cinematic AI book trailers for authors by PROMPTSBYPROTIUS.">
 <style>
-:root{--teal:#19C3C3;--amber:#F5A623}
+:root{--ink:#111;--muted:#6b6b6b;--rule:#e4e2dd;--paper:#fff;--soft:#f6f5f2;--accent:#c8102e}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden}
-body{margin:0;overflow-x:hidden;background:#05070a;color:#eee;font-family:system-ui,sans-serif;line-height:1.55}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:flex-end;align-items:center;padding:14px 4vw;background:rgba(5,7,10,.7);backdrop-filter:blur(8px);border-bottom:1px solid #123}
-nav .logo{letter-spacing:.14em;color:var(--amber);text-shadow:0 0 14px rgba(245,166,35,.45);font-weight:600;text-decoration:none}
-nav .links a{margin-left:22px;text-decoration:none;color:#9bb;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
-nav .links a:hover{color:var(--teal)}
-.btn{display:inline-block;font-size:17px;padding:14px 34px;border-radius:40px;border:2px solid var(--teal);background:transparent;color:#fff;cursor:pointer;box-shadow:0 0 30px rgba(25,195,195,.45);letter-spacing:.1em;text-decoration:none;text-transform:uppercase;transition:.2s}
-.btn:hover{background:rgba(25,195,195,.12);box-shadow:0 0 44px rgba(25,195,195,.7)}
-.btn.amber{border-color:var(--amber);box-shadow:0 0 30px rgba(245,166,35,.4)}
-.btn.amber:hover{background:rgba(245,166,35,.12)}
-#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%)}
-#hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;filter:saturate(1.2)}
-#fx{position:absolute;inset:0;width:100%;height:100%}
-#hero .glow{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(80px);opacity:.25;animation:drift 18s ease-in-out infinite alternate}
-#hero .g1{background:var(--teal);left:-20vmax;top:-20vmax}
-#hero .g2{background:var(--amber);right:-25vmax;bottom:-25vmax;animation-delay:-9s;opacity:.18}
-@keyframes drift{to{transform:translate(8vmax,6vmax) scale(1.1)}}
-#hero .in{position:relative;z-index:2;padding:0 6vw}
-h1{margin:0;font-size:clamp(22px,7vw,92px);letter-spacing:.12em;overflow-wrap:anywhere;word-break:break-word;max-width:100%;font-weight:700;color:#fff;text-shadow:0 0 30px rgba(25,195,195,.55)}
-h1 span{color:var(--amber);text-shadow:0 0 30px rgba(245,166,35,.55)}
-.tag{font-size:clamp(16px,2.2vw,26px);color:#bcd;letter-spacing:.06em;margin:14px 0 38px}
-.cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-section{padding:90px 5vw}
-h2{text-align:center;font-size:clamp(24px,3.4vw,42px);letter-spacing:.12em;text-transform:uppercase;color:var(--amber);text-shadow:0 0 18px rgba(245,166,35,.5);margin:0 0 10px}
-.sub{text-align:center;color:#8aa;margin:0 auto 36px;max-width:640px}
-#showcase{background:radial-gradient(ellipse at 50% 60%,#0d1a1f 0%,#05070a 70%)}
-.frame{max-width:1280px;margin:0 auto;aspect-ratio:16/9;border:1px solid rgba(25,195,195,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(25,195,195,.25)}
-.frame iframe{width:100%;height:100%;border:0;display:block}
-.pframe{max-width:1280px;margin:0 auto;aspect-ratio:16/9;border:1px solid rgba(25,195,195,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 50px rgba(25,195,195,.25);background:#000}
+nav{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:baseline;padding:22px 6vw;background:rgba(255,255,255,.96);border-bottom:1px solid var(--rule)}
+nav .logo{font-weight:700;letter-spacing:.02em;text-decoration:none;font-size:15px}
+nav .logo span{color:var(--accent)}
+nav .links a{margin-left:28px;text-decoration:none;font-size:15px;color:var(--ink)}
+nav .links a:hover{text-decoration:underline;text-underline-offset:4px}
+.btn{display:inline-block;font:inherit;font-size:15px;padding:12px 26px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;text-decoration:none;transition:.15s}
+.btn:hover{background:#fff;color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+#hero{padding:16vh 6vw 12vh;max-width:1200px;margin:0 auto}
+h1{margin:0;font-size:clamp(34px,6.4vw,84px);line-height:1.04;font-weight:700;letter-spacing:-.02em;overflow-wrap:anywhere}
+h1 span{color:var(--accent)}
+.tag{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--muted);margin:22px 0 44px;max-width:640px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+section{padding:110px 6vw;max-width:1200px;margin:0 auto;border-top:1px solid var(--rule)}
+h2{font-size:clamp(26px,3vw,38px);font-weight:700;letter-spacing:-.01em;margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 44px;max-width:640px}
+.pframe,.frame{background:#000;aspect-ratio:16/9;overflow:hidden}
 .pframe video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
-@media (max-width:640px){.pframe{border-radius:12px}}
-.alt{text-align:center;margin-top:16px;font-size:14px;color:#8aa}
-.alt a{color:var(--teal)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;max-width:1200px;margin:0 auto}
-.card{border:1px solid #1d3a40;border-radius:16px;padding:28px 24px;background:linear-gradient(160deg,rgba(25,195,195,.07),rgba(5,7,10,.6));transition:.25s}
-.card:hover{border-color:var(--teal);box-shadow:0 0 34px rgba(25,195,195,.3);transform:translateY(-4px)}
-.card .k{font-size:13px;letter-spacing:.14em;color:var(--teal);text-transform:uppercase}
-.card h3{margin:8px 0 10px;font-size:21px;color:#fff}
-.card p{margin:0;color:#9ab;font-size:15px}
-#contact{text-align:center;background:radial-gradient(ellipse at 50% 100%,#1a1408 0%,#05070a 65%)}
-.book{font-size:clamp(40px,8vw,96px);font-weight:700;letter-spacing:.2em;color:var(--amber);text-shadow:0 0 40px rgba(245,166,35,.6);margin:10px 0 26px}
-.contact-email{display:inline-block;margin:0 0 28px;color:var(--teal);text-decoration:none;font-size:clamp(15px,2vw,18px);letter-spacing:.06em;text-shadow:0 0 14px rgba(25,195,195,.45);word-break:break-word}
-.contact-email:hover{color:#fff;text-shadow:0 0 22px rgba(25,195,195,.7)}
-.contact-or{color:#8aa;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:36px 0 18px}
-.contact-form{max-width:520px;margin:0 auto;text-align:left;display:grid;gap:16px;padding:28px 24px;border:1px solid rgba(245,166,35,.35);border-radius:16px;background:linear-gradient(160deg,rgba(245,166,35,.07),rgba(5,7,10,.7));box-shadow:0 0 40px rgba(245,166,35,.12)}
-.contact-form label{display:grid;gap:8px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
-.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-height:48px;padding:12px 14px;border-radius:10px;border:1px solid #1d3a40;background:#0a1014;color:#eee;font:inherit;font-size:16px;letter-spacing:normal;text-transform:none;outline:none;transition:.2s;appearance:none;-webkit-appearance:none}
-.contact-form select{background-image:linear-gradient(45deg,transparent 50%,var(--amber) 50%),linear-gradient(135deg,var(--amber) 50%,transparent 50%);background-position:calc(100% - 18px) calc(50% - 3px),calc(100% - 12px) calc(50% - 3px);background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:36px}
-.contact-form textarea{min-height:120px;resize:vertical;line-height:1.45}
-.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--teal);box-shadow:0 0 18px rgba(25,195,195,.35)}
-.contact-form input::placeholder,.contact-form textarea::placeholder{color:#567}
-.contact-form .btn{width:100%;min-height:48px;margin-top:4px;text-align:center;font:inherit}
-.contact-form .err{color:#f88;font-size:13px;letter-spacing:.04em;text-transform:none;min-height:1.2em}
-footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}footer a.sbp-foot{letter-spacing:.08em;text-shadow:0 0 10px rgba(245,166,35,.45)}footer{text-align:center;color:#567;font-size:13px;padding:28px;border-top:1px solid #122}
-@media (max-width:640px){nav{padding:10px 4vw}nav .links a{margin-left:10px;font-size:12px;padding:8px 2px;display:inline-block}h1{font-size:clamp(20px,7.4vw,40px);letter-spacing:.05em}#hero .in{padding:0 5vw}.tag{margin:12px 0 28px}.cta{flex-direction:column;align-items:center;gap:14px}.btn{font-size:15px;padding:14px 26px;min-height:48px;width:100%;max-width:320px;text-align:center}.frame{aspect-ratio:auto;height:min(78vh,620px);border-radius:12px}.grid{grid-template-columns:1fr;gap:16px}.card{padding:22px 18px}.card:hover{transform:none}section{padding:64px 5vw}.book{letter-spacing:.12em}.contact-form{padding:22px 16px;gap:14px;max-width:100%}.contact-form .btn{max-width:none}}
-@media (prefers-reduced-motion:reduce){#hero .glow{animation:none}#hero video{display:none}}
-.m-only{display:none}@media (max-width:640px){.d-only{display:none}.m-only{display:inline}}</style></head><body>
-<nav><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
+.frame iframe{width:100%;height:100%;border:0;display:block}
+.alt{margin-top:16px;font-size:15px}
+.alt a{text-underline-offset:4px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:56px 40px}
+.card{border-top:2px solid var(--ink);padding-top:18px}
+.card .k{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.card h3{margin:6px 0 10px;font-size:21px;font-weight:700;line-height:1.25}
+.card p{margin:0;color:var(--muted);font-size:16px}
+#contact .cols{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.book{font-family:Georgia,"Times New Roman",serif;font-size:clamp(56px,9vw,120px);line-height:1;margin:6px 0 30px;letter-spacing:.04em}
+.contact-or{color:var(--muted);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin:40px 0 8px}
+.contact-email{font-size:19px;text-underline-offset:4px;word-break:break-word}
+.contact-form{display:grid;gap:22px;background:var(--soft);padding:36px}
+.contact-form label{display:grid;gap:8px;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;min-height:48px;padding:12px 2px;border:0;border-bottom:1px solid #bdbab3;border-radius:0;background:transparent;color:var(--ink);font:inherit;font-size:17px;text-transform:none;letter-spacing:normal;outline:none;appearance:none;-webkit-appearance:none}
+.contact-form select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 9px) 50%;background-size:5px 5px;background-repeat:no-repeat}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-bottom-color:var(--ink)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:#a5a29b}
+.contact-form .btn{width:100%;min-height:50px}
+.contact-form .err{color:var(--accent);font-size:14px;min-height:1.2em;margin:0}
+footer{max-width:1200px;margin:0 auto;padding:40px 6vw 60px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+footer a{text-underline-offset:3px}
+.m-only{display:none}
+@media (max-width:760px){body{font-size:16px}nav{padding:16px 5vw}nav .logo{display:none}nav{justify-content:flex-end}nav .links a{margin-left:18px}#hero{padding:72px 5vw 64px}section{padding:72px 5vw}.cta{flex-direction:column}.btn{text-align:center}#contact .cols{grid-template-columns:1fr;gap:44px}.contact-form{padding:24px 18px}.frame{aspect-ratio:auto;height:min(78vh,620px)}.grid{gap:40px}.d-only{display:none}.m-only{display:inline}}
+</style></head><body>
+<nav><a class="logo" href="#hero">PROMPTS<span>BY</span>PROTIUS</a><div class="links"><a href="#showcase">Trailers</a><a href="#services">Services</a><a href="#contact">Contact</a></div></nav>
 
 <header id="hero">
- <video src="carousel/media/SBP.mp4" poster="carousel/posters/SBP.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
- <div class="glow g1"></div><div class="glow g2"></div>
- <canvas id="fx" aria-hidden="true"></canvas>
- <div class="in">
-  <h1>PROMPTS<span>BY</span>PROTIUS</h1>
-  <p class="tag">Cinematic AI book trailers for authors</p>
-  <div class="cta"><a class="btn" href="#showcase">Watch the trailers</a><a class="btn amber" href="#contact">Get a trailer</a></div>
- </div>
+ <h1>PROMPTS<span>BY</span>PROTIUS</h1>
+ <p class="tag">Cinematic AI book trailers for authors</p>
+ <div class="cta"><a class="btn" href="#showcase">Watch the trailers</a><a class="btn ghost" href="#contact">Get a trailer</a></div>
 </header>
 
 <section id="promo">
@@ -101,13 +86,15 @@ footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}foo
 </section>
 
 <section id="contact">
+ <div class="cols"><div>
  <h2>Get a trailer</h2>
  <p class="sub">DM @theProtius on X with the word</p>
  <div class="book">BOOK</div>
- <a class="btn amber" href="https://x.com/theProtius" target="_blank" rel="noopener">Message @theProtius on X ↗</a>
+ <a class="btn" href="https://x.com/theProtius" target="_blank" rel="noopener">Message @theProtius on X ↗</a>
  <p class="contact-or">or email</p>
  <a class="contact-email" href="mailto:shotbyprotius@gmail.com">shotbyprotius@gmail.com</a>
- <form class="contact-form" id="contact-form" novalidate>
+ </div>
+ <div><form class="contact-form" id="contact-form" novalidate>
   <label>Name
    <input type="text" name="name" id="cf-name" required autocomplete="name" placeholder="Your name">
   </label>
@@ -127,19 +114,13 @@ footer a.sbp-foot{color:var(--amber);text-decoration:none;white-space:nowrap}foo
    <textarea name="message" id="cf-message" required maxlength="1200" placeholder="A short note about your book or project"></textarea>
   </label>
   <p class="err" id="cf-err" aria-live="polite"></p>
-  <button type="submit" class="btn amber">Send</button>
+  <button type="submit" class="btn">Send</button>
  </form>
+</div></div>
 </section>
-<footer>© PROMPTSBYPROTIUS · <a href="https://x.com/theProtius" target="_blank" rel="noopener">@theProtius</a> · <a class="sbp-foot" href="https://byprotius.com">Shot by Protius</a></footer>
+<footer>© PROMPTSBYPROTIUS · <a href="https://x.com/theProtius" target="_blank" rel="noopener">@theProtius</a> · <a href="https://byprotius.com">Shot by Protius</a></footer>
 
-<script>if(/[?&]shot/.test(location.search))document.getElementById("hero").style.minHeight="900px";
-(()=>{const c=document.getElementById('fx'),x=c.getContext('2d');let w,h,p=[];const dpr=Math.min(devicePixelRatio||1,2);
-function rs(){w=c.clientWidth;h=c.clientHeight;c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);const n=Math.min(90,Math.floor(w*h/16000));p=Array.from({length:n},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,v:Math.random()*.3+.08,a:Math.random()<.3}))}
-rs();addEventListener('resize',rs);
-if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-let vis=true;new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(c);
-(function f(){requestAnimationFrame(f);if(!vis)return;x.clearRect(0,0,w,h);for(const q of p){q.y-=q.v;if(q.y<-5){q.y=h+5;q.x=Math.random()*w}x.beginPath();x.arc(q.x,q.y,q.r,0,7);x.fillStyle=q.a?'rgba(245,166,35,.7)':'rgba(25,195,195,.7)';x.shadowBlur=8;x.shadowColor=x.fillStyle;x.fill()}})();})();
-(()=>{const form=document.getElementById('contact-form');if(!form)return;const err=document.getElementById('cf-err');
+<script>(()=>{const form=document.getElementById('contact-form');if(!form)return;const err=document.getElementById('cf-err');
 form.addEventListener('submit',e=>{e.preventDefault();err.textContent='';
 const name=(document.getElementById('cf-name').value||'').trim();
 const email=(document.getElementById('cf-email').value||'').trim();
